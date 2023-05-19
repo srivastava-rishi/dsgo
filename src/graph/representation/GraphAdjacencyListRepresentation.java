@@ -1,4 +1,4 @@
-package graph;
+package graph.representation;
 
 import java.util.ArrayList;
 public class GraphAdjacencyListRepresentation {
@@ -34,7 +34,7 @@ public class GraphAdjacencyListRepresentation {
             adjacencyList.get(v2).add(v1);
         }
 
-        // Print the matrix row by row
+        // Print the graph
         System.out.println(adjacencyList);
 
     }
