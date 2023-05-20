@@ -1,32 +1,36 @@
-package graph.transverse;
+package graph.connectedComponents;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class DepthFirstSearch {
+public class ConnectedComponents {
+
 
     static ArrayList<ArrayList<Integer>> graph;
     static boolean visited[];
 
-    public static void dfs(int source) {
 
-        if (!visited[source]) {
-            for (int i = 0; i < graph.get(source).size(); i++) {
+    private static void dfs(int source) {
+
+        if (!visited[source]){
+            visited[source] = true;
+            for (int i = 0 ; i < graph.get(source).size() ; i++){
                 dfs(graph.get(source).get(i));
             }
         }
+
     }
 
     public static void main(String[] args) {
 
-          /*
-         this is for an undirected graph
-         here we are using dfs to transverse it
+         /*
+         Actually it is very simple
+         we just need to find the total number of connected components in the graph
         */
 
-        int v = 6;
-        int e = 9;
-        int connection[][] = {{1, 3}, {1, 5}, {3, 5}, {3, 4}, {3, 6}, {3, 2}, {2, 6}, {4, 6}, {5, 6}};
+        int v = 8;
+        int e = 5;
+        int connection[][] = {{1, 2}, {2, 3}, {2, 4}, {3, 5}, {6,7}};
+        int answer =  0;
 
         // initiate list
         graph = new ArrayList<>();
@@ -36,6 +40,7 @@ public class DepthFirstSearch {
         for (int i = 0; i <= v; i++) {
             graph.add(new ArrayList<>());
         }
+
         // creating the actual graph
         for (int j = 0; j < e; j++) {
             // here we are basically getting the connected vertices
@@ -48,13 +53,18 @@ public class DepthFirstSearch {
             graph.get(v2).add(v1);
         }
 
-        // Print the matrix row by row
-        System.out.println(graph);
-        dfs(1);
-        System.out.println(Arrays.toString(visited));
+
+        // Now , we just need to call dfs
+
+        for (int i = 1 ; i <= v  ; i++) {
+            if (!visited[i]){
+                answer = answer + 1;
+                dfs(i);
+            }
+        }
+
+        System.out.println(answer);
 
     }
 
-
 }
-
