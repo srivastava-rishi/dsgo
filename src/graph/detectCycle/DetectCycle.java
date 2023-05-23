@@ -66,6 +66,7 @@ public class DetectCycle {
             if (!visited[i]) {
                 if (dfs(i, 0)) {
                     cycleExist = true;
+                    break;
                 }
             }
         }
