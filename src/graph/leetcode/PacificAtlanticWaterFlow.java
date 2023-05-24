@@ -1,7 +1,6 @@
 package graph.leetcode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PacificAtlanticWaterFlow {
 
@@ -29,12 +28,12 @@ public class PacificAtlanticWaterFlow {
 
     public static void main(String[] args) {
 
-        int height[][] = {{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}};
+        int heights[][] = {{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}};
 
         ArrayList<ArrayList<Integer>> answer = new ArrayList<>();
 
-        row = height.length;
-        column = height[0].length;
+        row = heights.length;
+        column = heights[0].length;
 
         // initially  we will transverse only for them
         boolean[][] pacificOceanVisitedArray = new boolean[row][column];
@@ -43,14 +42,15 @@ public class PacificAtlanticWaterFlow {
 
         // top and bottom
         for (int j = 0; j < column; j++) {
-            dfs(0,j,height,-1,pacificOceanVisitedArray);
-            dfs(row-1,j,height,-1,atlanticOceanVisitedArray);
+            dfs(0,j,heights,heights[0][j],pacificOceanVisitedArray);
+            dfs(row-1,j,heights,heights[row-1][j],atlanticOceanVisitedArray);
         }
         // left and right
-        for (int i = 0; i < column; i++) {
-            dfs(i,0,height,-1,pacificOceanVisitedArray);
-            dfs(i,column-1,height,-1,atlanticOceanVisitedArray);
+        for (int i = 0; i < row; i++) {
+            dfs(i,0,heights,heights[i][0],pacificOceanVisitedArray);
+            dfs(i,column-1,heights,heights[i][column-1],atlanticOceanVisitedArray);
         }
+
 
         // answer
 
