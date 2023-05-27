@@ -40,6 +40,8 @@ public class LongestIncreasingPathInAMatrix {
         if(matrix[i][j] <= previousValue) return 0;
         if(increasingPathArray[i][j] != 0) return  increasingPathArray[i][j];
 
+        path = 1;
+
      path = Math.max(path,1+dfs(i+1,j,matrix,matrix[i][j]));
      path = Math.max(path,1+dfs(i-1,j,matrix,matrix[i][j]));
      path = Math.max(path,1+dfs(i,j+1,matrix,matrix[i][j]));
